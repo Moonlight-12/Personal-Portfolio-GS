@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import HeroSection from "../hero"
 import ExperienceSection from "../experience"
 import ProjectsSection from "../projects"
-import HobbiesSection from "../hobbies"
 import ContactSection from "../contact"
 import Footer from "../footer"
 import { experiences, projects } from "../../data/portfolio"
@@ -110,8 +109,7 @@ const Portfolio: React.FC = () => {
           {/* Projects Section */}
           <ProjectsSection projects={projects} isVisible={isVisible.projects} />
 
-          {/* Hobbies Section
-          <HobbiesSection hobbies={hobbies} /> */}
+          
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 import type React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { MapPin, Mail } from "lucide-react";
 import type { HeroSectionProps } from "../../types/portfolio";
 import FloatingCube from "../floating-cube";
@@ -20,12 +20,6 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
   setActiveSection,
 }) => {
   const heroRef = useRef<HTMLElement>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  // Ensure this only runs on the client side
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   // Personal information - customize these values
   const personalInfo = {
