@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export interface Experience {
   title: string;
   company: string;
@@ -16,12 +14,6 @@ export interface Project {
   link: string;
   image: string;
   status: 'personal' | 'freelance';
-}
-
-export interface Hobby {
-  name: string;
-  icon: ReactNode;
-  description: string;
 }
 
 export interface FloatingShapeProps {
@@ -48,10 +40,6 @@ export interface ExperienceSectionProps {
 export interface ProjectsSectionProps {
   projects: Project[];
   isVisible: boolean;
-}
-
-export interface HobbiesSectionProps {
-  hobbies: Hobby[];
 }
 
 export interface ContactSectionProps {

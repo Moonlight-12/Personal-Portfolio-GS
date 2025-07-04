@@ -12,10 +12,6 @@ const Footer: React.FC = () => {
         </p>
         <div className="flex justify-center space-x-6 text-sm text-gray-500">
           <span>Designed with ❤️</span>
-          <span>•</span>
-          <span>Open Source</span>
-          <span>•</span>
-          <span>Responsive Design</span>
         </div>
       </div>
     </footer>

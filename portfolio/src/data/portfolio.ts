@@ -1,6 +1,4 @@
-import React from 'react';
-import { Camera, Music, Palette, Code } from 'lucide-react';
-import { Experience, Project, Hobby } from '../types/portfolio';
+import { Experience, Project } from '../types/portfolio';
 
 export const experiences: Experience[] = [
   {
