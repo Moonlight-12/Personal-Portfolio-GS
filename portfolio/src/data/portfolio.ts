@@ -32,7 +32,7 @@ export const projects: Project[] = [
     description: "MyJournal is a journaling app built with Next.js and React, featuring OAuth authentication, carousel browsing, and favorites management. Designed to encourage daily journaling through a seamless, mobile-first experience.",
     tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Express"],
     github: "https://github.com/Moonlight-12/MyJournals",
-    link: "https://your-ecommerce-demo.vercel.app",
+    link: "https://my-journals-frontend.vercel.app/",
     image: "/icon.svg",
     status: "personal",
   },

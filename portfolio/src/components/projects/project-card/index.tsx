@@ -29,6 +29,20 @@ const ProjectCard: React.FC<{
         />
       </div>
       <div className="p-6">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {/* Project status (personal or freelance) */}
+          <span
+            className={`px-3 py-1 rounded-full text-xs text-gray-300 ${
+              project.status === "personal"
+                ? "bg-green-700/50"
+                : "bg-yellow-700/50"
+            }`}
+          >
+            {project.status === "personal"
+              ? "Personal Project"
+              : "Freelance Project"}
+          </span>
+        </div>
         <h3 className="text-xl font-semibold mb-2 text-blue-400">
           {project.title}
         </h3>
