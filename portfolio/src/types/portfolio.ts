@@ -5,15 +5,17 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
+  tech: string[];
 }
 
 export interface Project {
   title: string;
   description: string;
   tech: string[];
-  github: string;
-  demo: string;
+  github?: string;
+  link: string;
   image: string;
+  status: 'personal' | 'freelance';
 }
 
 export interface Hobby {

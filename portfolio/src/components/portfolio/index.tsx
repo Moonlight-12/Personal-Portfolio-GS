@@ -1,25 +1,19 @@
 "use client"
 import type React from "react"
 import { useState, useEffect } from "react"
-// Import all components
-import Navigation from "../navigation"
 import HeroSection from "../hero"
 import ExperienceSection from "../experience"
 import ProjectsSection from "../projects"
 import HobbiesSection from "../hobbies"
 import ContactSection from "../contact"
 import Footer from "../footer"
-// Import data
-import { experiences, projects, getHobbiesWithIcons } from "../../data/portfolio"
+import { experiences, projects } from "../../data/portfolio"
 
 const Portfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState("home")
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({})
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isClient, setIsClient] = useState(false)
-
-  // Get hobbies with icons
-  const hobbies = getHobbiesWithIcons()
 
   // Client-side only effect
   useEffect(() => {
@@ -94,12 +88,12 @@ const Portfolio: React.FC = () => {
   }
 
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 to-slate-900 font-inter">
+    <div className="relative bg-gradient-to-br from-slate-900 to-slate-900 ">
       
       {/* This div now controls the main content layout */}
-      <div className="flex flex-col md:flex-row md:min-h-screen pt-16">
+      <div className="flex flex-col md:flex-row md:min-h-screen">
         {/* Left Section - Sticky on md and larger screens, not sticky on mobile */}
-        <div className="w-full p-4 flex items-center justify-center md:w-1/3 md:sticky md:top-0 md:h-screen">
+        <div className="w-full p-4 flex items-center justify-center md:w-2/5 md:sticky md:top-0 md:h-screen">
         <HeroSection
         isVisible={isVisible.home}
         mousePosition={isClient ? mousePosition : { x: 0, y: 0 }}
@@ -116,8 +110,8 @@ const Portfolio: React.FC = () => {
           {/* Projects Section */}
           <ProjectsSection projects={projects} isVisible={isVisible.projects} />
 
-          {/* Hobbies Section */}
-          <HobbiesSection hobbies={hobbies} />
+          {/* Hobbies Section
+          <HobbiesSection hobbies={hobbies} /> */}
         </div>
       </div>
 

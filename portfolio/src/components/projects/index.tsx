@@ -11,7 +11,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects, isVisible }
             isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
           }`}
         >
-          Featured Projects
+          Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
