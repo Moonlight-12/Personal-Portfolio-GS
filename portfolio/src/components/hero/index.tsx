@@ -1,16 +1,17 @@
-"use client"
-import type React from "react"
-import { useRef, useState, useEffect } from "react"
-import { MapPin, Mail } from "lucide-react"
-import type { HeroSectionProps } from "../../types/portfolio"
-import FloatingCube from "../floating-cube"
-import Navigation from "../navigation"
-import Image from "next/image"
+"use client";
+import type React from "react";
+import { useRef, useState, useEffect } from "react";
+import { MapPin, Mail } from "lucide-react";
+import type { HeroSectionProps } from "../../types/portfolio";
+import FloatingCube from "../floating-cube";
+import Navigation from "../navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 // Extended props to include navigation props
 interface ExtendedHeroSectionProps extends HeroSectionProps {
-  activeSection: string
-  setActiveSection: (sectionId: string) => void
+  activeSection: string;
+  setActiveSection: (sectionId: string) => void;
 }
 
 const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
@@ -18,13 +19,13 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
   activeSection,
   setActiveSection,
 }) => {
-  const heroRef = useRef<HTMLElement>(null)
-  const [isClient, setIsClient] = useState(false)
+  const heroRef = useRef<HTMLElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   // Ensure this only runs on the client side
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   // Personal information - customize these values
   const personalInfo = {
@@ -35,19 +36,18 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
     email: "sadikingeraldo@gmail.com",
     github: "https://github.com/Moonlight-12",
     linkedin: "https://www.linkedin.com/in/geraldo-sadikin/",
-  }
-
+  };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({
         behavior: "smooth",
         block: "start",
-      })
+      });
     }
-    setActiveSection(sectionId)
-  }
+    setActiveSection(sectionId);
+  };
 
   return (
     <section
@@ -56,12 +56,14 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
       className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-900 ${
         isVisible ? "opacity-100" : "opacity-0"
       } transition-opacity duration-1000`}
-      
       data-animate
     >
       {/* Navigation at the top */}
       <div className="w-full z-20 pt-4">
-        <Navigation activeSection={activeSection} setActiveSection={scrollToSection} />
+        <Navigation
+          activeSection={activeSection}
+          setActiveSection={scrollToSection}
+        />
       </div>
 
       {/* Main hero content - centered */}
@@ -75,7 +77,9 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
           <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
             {personalInfo.name}
           </h1>
-          <p className="text-md md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">{personalInfo.title}</p>
+          <p className="text-md md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            {personalInfo.title}
+          </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-400">
             <div className="flex items-center gap-2">
               <MapPin size={20} />
@@ -104,7 +108,13 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
               className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700/50 text-gray-400 hover:text-white border border-slate-700/50 hover:border-slate-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
               aria-label="GitHub"
             >
-              <Image src={"/github-mark-white.svg"} width={24} height={24} alt="GitHub" className="w-6 h-6" />
+              <Image
+                src={"/github-mark-white.svg"}
+                width={24}
+                height={24}
+                alt="GitHub"
+                className="w-6 h-6"
+              />
             </a>
             <a
               href={personalInfo.linkedin}
@@ -113,13 +123,30 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
               className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700/50 text-gray-400 hover:text-white border border-slate-700/50 hover:border-slate-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
               aria-label="LinkedIn"
             >
-              <Image src={"/social_10092249.png"} width={24} height={24} alt="LinkedIn" className="w-6 h-6" />
+              <Image
+                src={"/social_10092249.png"}
+                width={24}
+                height={24}
+                alt="LinkedIn"
+                className="w-6 h-6"
+              />
             </a>
+          </div>
+
+          <div className="mt-8">
+            <Link
+              href="https://drive.google.com/file/d/1wDE2F3cufWSxYsoTYpEnaEy18xiXt5Dh/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full px-6 py-3 bg-slate-800/50 hover:bg-slate-700/50 text-gray-400 hover:text-white border border-slate-700/50 hover:border-slate-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
+            >
+              View Resume
+            </Link>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
