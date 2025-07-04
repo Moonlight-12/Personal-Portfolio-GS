@@ -70,8 +70,15 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center z-10 px-4">
           <div className="mb-8 relative">
-            <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
-              {personalInfo.initials}
+            <div className="w-32 h-32 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
+              
+              <Image
+                src="/profile.jpeg"
+                alt="Profile Icon"
+                width={256}
+                height={256}
+                className=" w-full h-full object-cover rounded-full hover:scale-110 hover:rotate-12"
+              />
             </div>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
