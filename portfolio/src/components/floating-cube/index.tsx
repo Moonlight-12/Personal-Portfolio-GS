@@ -18,8 +18,8 @@ function AnimatedCube() {
 
   return (
     <mesh ref={meshRef}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="#3b82f6" metalness={0.7} roughness={0.2} />
+      <boxGeometry args={[3, 3, 3]} />
+      <meshStandardMaterial color="#CF9FFF" metalness={0.9} roughness={0.2} />
     </mesh>
   )
 }
