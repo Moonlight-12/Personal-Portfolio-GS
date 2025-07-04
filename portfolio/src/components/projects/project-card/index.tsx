@@ -1,9 +1,10 @@
 import type React from "react";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
+import type { Project } from "../../../types/portfolio";
 
 const ProjectCard: React.FC<{
-  project: any;
+  project: Project;
   index: number;
   isVisible: boolean;
 }> = ({ project, index, isVisible }) => {

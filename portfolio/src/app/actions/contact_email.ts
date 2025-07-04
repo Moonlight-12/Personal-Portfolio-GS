@@ -47,7 +47,7 @@ export async function sendContactEmail(formData: ContactData) {
     };
 
     // Send email
-    const info = await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
     
     return {
       success: true,
