@@ -1,37 +1,103 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContactSectionProps } from '../../types/portfolio';
+import { sendContactEmail } from '@/app/actions/contact_email';
+import { toast } from "sonner";
 
 interface FormData {
-  name: string;
+  email: string;
   message: string;
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
+    email: '',
     message: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+  
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (submitStatus.type === 'success') {
+      toast.success(submitStatus.message);
+    } else if (submitStatus.type === 'error') {
+      toast.error(submitStatus.message);
+    }
+    if (submitStatus.type !== null) {
+      setSubmitStatus({ type: null, message: '' });
+    }
+  }, [submitStatus]);
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleSubmit = async () => {
+    if (!validateEmail(formData.email)) {
+      setEmailError('Please enter a valid email address.');
+      toast.error('Please correct the errors in the form.');
+      return;
+    }
+    if (!formData.message.trim()) {
+      toast.error('Message cannot be empty.');
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      alert('Thank you for your message! I\'ll get back to you soon.');
-      setFormData({ name: '', message: '' });
+    setSubmitStatus({ type: null, message: '' });
+   
+    try {
+      const result = await sendContactEmail({
+        email: formData.email,
+        message: formData.message
+      });
+
+      if (result.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you for your message! I\'ll get back to you soon.'
+        });
+        setFormData({ email: '', message: '' });
+        setEmailError(null);
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.message || 'Failed to send message. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'An unexpected error occurred. Please try again later.'
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+
+    if (field === 'email') {
+      if (value.trim() === '') {
+        setEmailError('Email cannot be empty.');
+      } else if (!validateEmail(value)) {
+        setEmailError('Please enter a valid email address.');
+      } else {
+        setEmailError(null);
+      }
+    }
   };
 
-  const isFormValid = formData.name.trim() && formData.message.trim();
+  const isFormValid = formData.email.trim() && formData.message.trim() && emailError === null;
 
   return (
     <section 
@@ -51,10 +117,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
           }`}
         >
           <ContactInput
-            type="text"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={(value) => handleInputChange('name', value)}
+            type="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={(value) => handleInputChange('email', value)}
+            validationError={emailError}
           />
           
           <ContactTextarea
@@ -74,13 +141,13 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   );
 };
 
-// Reusable Input Component
 const ContactInput: React.FC<{
   type: string;
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
-}> = ({ type, placeholder, value, onChange }) => {
+  validationError?: string | null;
+}> = ({ type, placeholder, value, onChange, validationError }) => {
   return (
     <div>
       <input
@@ -88,14 +155,18 @@ const ContactInput: React.FC<{
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+        className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg focus:outline-none transition-colors ${
+          validationError ? 'border-red-500 focus:border-red-500' : 'border-gray-700/50 focus:border-blue-500'
+        }`}
         required
       />
+      {validationError && (
+        <p className="text-red-400 text-sm mt-1 ml-2">{validationError}</p>
+      )}
     </div>
   );
 };
 
-// Reusable Textarea Component
 const ContactTextarea: React.FC<{
   placeholder: string;
   value: string;
@@ -115,7 +186,6 @@ const ContactTextarea: React.FC<{
   );
 };
 
-// Submit Button Component
 const SubmitButton: React.FC<{
   onClick: () => void;
   isLoading: boolean;

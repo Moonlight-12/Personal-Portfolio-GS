@@ -103,7 +103,7 @@ const Portfolio: React.FC = () => {
         </div>
 
         {/* Right Section - Scrollable content */}
-        <div className="w-full p-4 md:flex-1 md:overflow-y-auto scrollable-content">
+        <div className="w-full p-4 md:flex-1 md:overflow-y-auto scrollable-content overflow-hidden">
           {/* Experience Section */}
           <ExperienceSection experiences={experiences} isVisible={isVisible.experience} />
 
