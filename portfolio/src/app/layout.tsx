@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Geraldo Sadikin",
     description:
-      "Personal portfolio showcasing my work and experience in web development",
+      "Click here to know more about me!",
     type: "website",
   },
 };
