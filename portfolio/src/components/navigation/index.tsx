@@ -5,7 +5,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
   const navItems = ['Experience', 'Projects', 'Contact'];
 
   return (
-    <nav className="bg-gray-900/80 backdrop-blur-md border-b border-gray-700/50">
+    <nav className="bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 lg:bg-transparent lg:border-0">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex justify-center space-x-8">
           {navItems.map((item) => (
