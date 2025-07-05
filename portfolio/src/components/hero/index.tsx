@@ -53,7 +53,7 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
       data-animate
     >
       {/* Navigation at the top */}
-      <div className="w-full z-20">
+      <div className="w-full z-20 -mt-3 hidden lg:block">
         <Navigation
           activeSection={activeSection}
           setActiveSection={scrollToSection}
@@ -61,10 +61,10 @@ const HeroSection: React.FC<ExtendedHeroSectionProps> = ({
       </div>
 
       {/* Main hero content - centered */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-start justify-center pt-8">
         <div className="text-center z-10 px-4">
           <div className="mb-8 relative">
-            <div className="w-42 h-42 mx-auto mb-6 mt-6 rounded-full flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
+            <div className="w-42 h-42 mx-auto rounded-full flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
               <Image
                 src="/profile.jpeg"
                 alt="Profile Icon"

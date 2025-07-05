@@ -7,6 +7,7 @@ import ProjectsSection from "../projects"
 import ContactSection from "../contact"
 import Footer from "../footer"
 import { experiences, projects } from "../../data/portfolio"
+import Navigation from "../navigation"
 
 const Portfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState("home")
@@ -87,29 +88,30 @@ const Portfolio: React.FC = () => {
   }
 
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 to-slate-900 ">
+    <div className="relative bg-gradient-to-br from-slate-900 to-slate-900">
+      {/* Navigation - Sticky on mobile and tablet, hidden on large desktop */}
+      <div className="lg:hidden sticky top-0 z-50">
+        <Navigation activeSection={activeSection} setActiveSection={scrollToSection} />
+      </div>
       
       {/* This div now controls the main content layout */}
-      <div className="flex flex-col md:flex-row md:min-h-screen">
-        {/* Left Section - Sticky on md and larger screens, not sticky on mobile */}
-        <div className="w-full p-4 flex items-center justify-center md:w-2/5 md:sticky md:top-0 md:h-screen">
-        <HeroSection
-        isVisible={isVisible.home}
-        mousePosition={isClient ? mousePosition : { x: 0, y: 0 }}
-        activeSection={activeSection}
-        setActiveSection={scrollToSection}
-      />
+      <div className="flex flex-col lg:flex-row lg:min-h-screen">
+        <div className="w-full p-4 flex flex-col items-center justify-start lg:w-2/5 lg:sticky lg:top-0 lg:h-screen overflow-hidden">
+          <HeroSection
+            isVisible={isVisible.home}
+            mousePosition={isClient ? mousePosition : { x: 0, y: 0 }}
+            activeSection={activeSection}
+            setActiveSection={scrollToSection}
+          />
         </div>
 
         {/* Right Section - Scrollable content */}
-        <div className="w-full p-4 md:flex-1 md:overflow-y-auto scrollable-content overflow-hidden">
+        <div className="w-full p-4 lg:flex-1 lg:overflow-y-auto scrollable-content overflow-hidden">
           {/* Experience Section */}
           <ExperienceSection experiences={experiences} isVisible={isVisible.experience} />
 
           {/* Projects Section */}
           <ProjectsSection projects={projects} isVisible={isVisible.projects} />
-
-          
         </div>
       </div>
 
