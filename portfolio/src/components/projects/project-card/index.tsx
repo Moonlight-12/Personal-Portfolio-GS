@@ -13,21 +13,24 @@ const ProjectCard: React.FC<{
       className={`bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 transform transition-all duration-700 hover:scale-105 hover:bg-gray-800/70 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       }`}
-      style={{
-        transitionDelay: `${index * 200}ms`,
-        // Ensure minimum opacity for debugging
-        minHeight: "300px",
-      }}
+      
     >
       <div className="relative h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
         {/* <div className="text-6xl opacity-20 z-10 relative">💻</div> */}
-        <Image
-          src={project.image}
-          alt={project.title}
-          width={400}
-          height={250}
-          className="absolute inset-0 object-cover w-full h-full"
-        />
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+        >
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={400}
+            height={250}
+            className="absolute inset-0 object-cover w-full h-full"
+          />
+        </a>
       </div>
       <div className="p-6">
         <div className="flex flex-wrap gap-2 mb-4">
