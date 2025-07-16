@@ -102,7 +102,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   return (
     <section 
       id="contact" 
-      className="py-20 px-6 bg-gray-800/30"
+      className="py-50 px-6 bg-gray-800/30"
       data-animate
     >
       <div className="max-w-2xl mx-auto">
