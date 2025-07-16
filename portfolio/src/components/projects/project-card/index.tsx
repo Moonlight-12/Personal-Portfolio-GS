@@ -7,7 +7,7 @@ const ProjectCard: React.FC<{
   project: Project;
   index: number;
   isVisible: boolean;
-}> = ({ project, index, isVisible }) => {
+}> = ({ project, isVisible }) => {
   return (
     <div
       className={`bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 transform transition-all duration-700 hover:scale-105 hover:bg-gray-800/70 ${
